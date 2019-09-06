@@ -39,11 +39,15 @@ public final class ReportMetadata
     static final String STYLESHEET_KEY = PROPERTY_KEY_PREFIX + "stylesheet";
     static final String LOCALE_KEY = PROPERTY_KEY_PREFIX + "locale";
     static final String VELOCITY_LOG_KEY = PROPERTY_KEY_PREFIX + "velocity-log";
-
+/*
+ * Remarked By Bem
     private static final DateFormat DATE_FORMAT = new SimpleDateFormat("EEEE dd MMMM yyyy");
     private static final DateFormat TIME_FORMAT = new SimpleDateFormat("HH:mm z");
     
-
+*/
+    //Support Date & Time Format to yyyy-MM-dd HH:mm:ss
+    private static final DateFormat DATE_FORMAT = new SimpleDateFormat("yyyy-MM-dd");
+    private static final DateFormat TIME_FORMAT = new SimpleDateFormat("HH:mm:ss");
     /**
      * The date/time at which this report is being generated.
      */
