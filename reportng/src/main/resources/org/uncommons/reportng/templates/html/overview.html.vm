@@ -21,7 +21,7 @@
 <h1>$meta.reportTitle</h1>
 #if (!$utils.allOutput.empty)
   <p>
-    <a href="output.html">$messages.getString("logOutput")</a>
+//    <a href="output.html">$messages.getString("logOutput")</a>
     #if ($meta.coverageLink)
       &#183; <a href="$meta.coverageLink" target="_top">$messages.getString("coverageReport")</a>
     #end

@@ -114,6 +114,7 @@ public class HTMLReporter extends AbstractReporter
         }
         catch (Exception ex)
         {
+            ex.printStackTrace();
             throw new ReportNGException("Failed generating HTML report.", ex);
         }
     }

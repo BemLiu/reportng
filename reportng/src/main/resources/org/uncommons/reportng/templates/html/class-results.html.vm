@@ -46,10 +46,13 @@
     #if ($output.size() > 0)
     <div class="testOutput">
       #foreach( $line in $output )
+      	#set ($str=$utils.deleteImageString($line))
+      	#set ($str=$utils.deleteLogLinkString($Str))
         #if ($meta.shouldEscapeOutput())
-          $utils.escapeHTMLString($line)<br />
+##          $utils.escapeHTMLString($line)<br />
+          	$utils.escapeHTMLString($str)<br />
         #else
-          $line
+        	$utils.escapeHTMLString($str)
         #end
       #end
     </div>
@@ -76,5 +79,47 @@
     #end
     #set ($id = $id + 1)
   </td>
+  <td>
+  ##result
+    #if ($testResult.status == 3)
+      <i class="test-method-skipped">$messages.getString("skipped")</i>
+    #elseif ($testResult.status == 2)
+      <i class="test-method-failed">$messages.getString("failed")</i>
+    #elseif ($testResult.status == 1)
+      <i class="test-method-passed"> $messages.getString("passed")</i>
+    #end
+  </td>
+  <td>
+    ##log link
+    #set ($output = $utils.getTestOutput($testResult))
+    #if ($output.size() > 0)
+        #foreach( $line in $output )
+           #set ($str=$utils.deleteImageString($line))
+            #if ($meta.shouldEscapeOutput())
+              ##  $utils.escapeHTMLString($str)<br />
+    		  ${str}
+            #else
+              $utils.escapeHTMLString($str)
+            #end
+        #end
+    #end
+  </td>
+  <td>
+   
+    ###screenshot
+    #set ($output = $utils.getTestOutput($testResult))
+    #if ($output.size() > 0)
+        #foreach( $line in $output )
+        ###set ($str=$utils.deleteLogLinkString($line))
+            #if ($meta.shouldEscapeOutput())
+            	## $utils.escapeHTMLString($str)<br />
+    			${str}
+            #else
+            	  $utils.escapeHTMLString($str)
+            #end
+        #end
+    #end
+  </td>
+
 </tr>
 #end

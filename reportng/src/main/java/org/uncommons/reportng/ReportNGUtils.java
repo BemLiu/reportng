@@ -25,6 +25,9 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
 import org.testng.IInvokedMethod;
 import org.testng.ISuite;
 import org.testng.ISuiteResult;
@@ -444,4 +447,38 @@ public class ReportNGUtils
     {
         return PERCENTAGE_FORMAT.format(numerator / (double) denominator);
     }
+    //added by Bem
+    public String getImageString(String s){
+        String regex="(<img(.*?)/>)";
+        Pattern pattern= Pattern.compile(regex);
+        Matcher matcher=pattern.matcher(s);
+        while(matcher.find()){
+            String group=matcher.group(1);
+            return group;
+        }
+        return "";
+    }
+    public String deleteImageString(String s){
+        if(s==null ||"".equals(s)){
+            return "";
+        }
+        return s.replaceAll("<img(.*?)/>","");
+    }
+    public String getLogLinkString(String s){
+        String regex="(<a(.*?)>(.*?)</a>)";
+        Pattern pattern= Pattern.compile(regex);
+        Matcher matcher=pattern.matcher(s);
+        while(matcher.find()){
+            String group=matcher.group(1);
+            return group;
+        }
+        return "";
+    }
+    public String deleteLogLinkString(String s){
+       if(s==null || "".equals(s) ){
+           return "";
+       }
+        return s.replaceAll("(<a(.*?)>(.*?)</a>)","");
+    }
+
 }
