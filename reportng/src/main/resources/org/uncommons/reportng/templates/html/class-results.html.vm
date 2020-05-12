@@ -95,12 +95,14 @@
     #if ($output.size() > 0)
         #foreach( $line in $output )
            #set ($str=$utils.deleteImageString($line))
-            #if ($meta.shouldEscapeOutput())
-              ##  $utils.escapeHTMLString($str)<br />
-    		  ${str}
-            #else
-              $utils.escapeHTMLString($str)
-            #end
+           #if ($str.length() > 0) 
+        	   #if ($meta.shouldEscapeOutput())
+                   ##  $utils.escapeHTMLString($str)<br />
+         		  ${str}
+                 #else
+                   $utils.escapeHTMLString($str)
+                 #end
+           #end
         #end
     #end
   </td>
@@ -110,13 +112,15 @@
     #set ($output = $utils.getTestOutput($testResult))
     #if ($output.size() > 0)
         #foreach( $line in $output )
-        ###set ($str=$utils.deleteLogLinkString($line))
-            #if ($meta.shouldEscapeOutput())
-            	## $utils.escapeHTMLString($str)<br />
-    			${str}
-            #else
-            	  $utils.escapeHTMLString($str)
-            #end
+        	#set ($str=$utils.deleteLogLinkString($line))
+        	#if( $str.length() > 0)
+	            #if ($meta.shouldEscapeOutput())
+	            	## $utils.escapeHTMLString($str)<br />
+	    			${str}
+	            #else
+	            	$utils.escapeHTMLString($str)
+	            #end
+	       #end  
         #end
     #end
   </td>
