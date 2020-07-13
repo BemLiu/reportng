@@ -14,6 +14,7 @@
       <span class="description" title="$testResult.method.description">$testResult.name$testInstanceName</span>
     #else
       $testResult.name$testInstanceName
+    	
     #end
   </td>
   <td class="duration">
@@ -38,7 +39,12 @@
     #end
 
     #if ($utils.hasArguments($testResult))
-      <i>$messages.getString("methodArguments"): </i><span class="arguments">$utils.getArguments($testResult)</span><br />
+      ##<i>$messages.getString("methodArguments"): </i><span class="arguments">$utils.getArguments($testResult)</span><br />
+      #if ($testResult.method.description && $testResult.method.description.length() > 0)
+    	$testResult.method.description
+      #else
+    	<i>$messages.getString("methodArguments"): </i><span class="arguments">$utils.getArguments($testResult)</span><br />
+      #end
     #end
 
     ## Show logger output for the test.
