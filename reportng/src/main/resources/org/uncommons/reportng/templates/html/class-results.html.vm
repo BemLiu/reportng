@@ -37,16 +37,12 @@
       	<span class="dependency">$utils.getSkipExceptionMessage($testResult)</span>
       #end
     #end
-
+   
     #if ($utils.hasArguments($testResult))
-      ##<i>$messages.getString("methodArguments"): </i><span class="arguments">$utils.getArguments($testResult)</span><br />
-      #if ($testResult.method.description && $testResult.method.description.length() > 0)
-    	$testResult.method.description
-      #else
-    	<i>$messages.getString("methodArguments"): </i><span class="arguments">$utils.getArguments($testResult)</span><br />
-      #end
-    #end
-
+	   <span class="description"> $utils.getArguments($testResult)</span><br />
+    #end 
+    
+  
     ## Show logger output for the test.
     #set ($output = $utils.getTestOutput($testResult))
     #if ($output.size() > 0)
